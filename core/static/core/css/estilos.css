@@ -1,0 +1,275 @@
+/* ============================================================
+   Gestor de Tareas — paleta gris / monocromática
+   ============================================================ */
+
+:root {
+    --gris-950: #16181d;
+    --gris-900: #22252b;
+    --gris-800: #2e323a;
+    --gris-700: #454a54;
+    --gris-600: #5b616d;
+    --gris-500: #767c88;
+    --gris-400: #9aa0ab;
+    --gris-300: #c3c7ce;
+    --gris-200: #dde0e4;
+    --gris-100: #eef0f2;
+    --gris-50: #f7f8f9;
+
+    --color-primario: var(--gris-800);
+    --color-primario-oscuro: var(--gris-950);
+    --color-borde: var(--gris-200);
+    --color-texto: var(--gris-900);
+    --color-texto-suave: var(--gris-600);
+
+    --color-exito: #3f8f5f;
+    --color-exito-fondo: #ecf6ef;
+    --color-error: #b3413c;
+    --color-error-fondo: #fbecec;
+    --color-info: #4671a8;
+    --color-info-fondo: #eaf1f9;
+
+    --radio-borde: 0.6rem;
+    --sombra-suave: 0 1px 2px rgba(22, 24, 29, 0.06), 0 1px 3px rgba(22, 24, 29, 0.08);
+    --sombra-hover: 0 6px 16px rgba(22, 24, 29, 0.10);
+}
+
+body {
+    background-color: var(--gris-50);
+    color: var(--color-texto);
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ---------- Barra de navegación ---------- */
+
+.navbar-app {
+    background-color: var(--color-primario) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 2px 6px rgba(22, 24, 29, 0.15);
+}
+
+.navbar-app .navbar-brand,
+.navbar-app .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+}
+
+.navbar-app .navbar-brand {
+    color: #ffffff !important;
+    letter-spacing: 0.01em;
+}
+
+.navbar-app .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.navbar-app .nav-link.active {
+    color: #ffffff !important;
+    position: relative;
+}
+
+.navbar-app .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: -4px;
+    height: 2px;
+    background-color: var(--gris-300);
+    border-radius: 2px;
+}
+
+/* ---------- Tarjetas ---------- */
+
+.tarjeta-proyecto,
+.tarjeta-tarea {
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-suave);
+    transition: transform 0.12s ease-in-out, box-shadow 0.12s ease-in-out, border-color 0.12s;
+}
+
+.tarjeta-proyecto:hover,
+.tarjeta-tarea:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--gris-300);
+}
+
+.tarjeta-proyecto .card-title,
+.tarjeta-tarea .card-title {
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+/* ---------- Panel de estadísticas del dashboard ---------- */
+
+.panel-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.tarjeta-estadistica {
+    background-color: #ffffff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 1rem 1.1rem;
+    box-shadow: var(--sombra-suave);
+}
+
+.tarjeta-estadistica .numero {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    line-height: 1.1;
+}
+
+.tarjeta-estadistica .etiqueta {
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ---------- Insignias de estado / prioridad ---------- */
+
+.badge-pendiente {
+    background-color: var(--gris-500);
+}
+
+.badge-en_progreso {
+    background-color: #4671a8;
+}
+
+.badge-completada {
+    background-color: #3f8f5f;
+}
+
+.badge-baja {
+    background-color: var(--gris-300);
+    color: var(--gris-900);
+}
+
+.badge-media {
+    background-color: #b98a3d;
+}
+
+.badge-alta {
+    background-color: #b3413c;
+}
+
+/* ---------- Botones ---------- */
+
+.btn-principal {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: #ffffff;
+}
+
+.btn-principal:hover,
+.btn-principal:focus {
+    background-color: var(--color-primario-oscuro);
+    border-color: var(--color-primario-oscuro);
+    color: #ffffff;
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--gris-700);
+    --bs-btn-border-color: var(--gris-400);
+    --bs-btn-hover-bg: var(--gris-700);
+    --bs-btn-hover-border-color: var(--gris-700);
+}
+
+/* ---------- Formularios ---------- */
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--gris-500);
+    box-shadow: 0 0 0 0.2rem rgba(69, 74, 84, 0.15);
+}
+
+.campo-con-error .form-control,
+.campo-con-error .form-select {
+    border-color: var(--color-error);
+    background-color: var(--color-error-fondo);
+}
+
+.mensaje-error-campo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.35rem;
+    color: var(--color-error);
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}
+
+.mensaje-error-campo i {
+    margin-top: 0.15rem;
+}
+
+/* ---------- Alertas (formulario y mensajes del sistema) ---------- */
+
+.alert-danger {
+    background-color: var(--color-error-fondo);
+    border: 1px solid var(--color-error);
+    border-left-width: 4px;
+    color: var(--color-error);
+}
+
+.alert-success {
+    background-color: var(--color-exito-fondo);
+    border: 1px solid var(--color-exito);
+    border-left-width: 4px;
+    color: var(--color-exito);
+}
+
+.alert-info {
+    background-color: var(--color-info-fondo);
+    border: 1px solid var(--color-info);
+    border-left-width: 4px;
+    color: var(--color-info);
+}
+
+/* ---------- Tarjeta de autenticación (login / registro) ---------- */
+
+.tarjeta-auth {
+    max-width: 440px;
+    margin: 4rem auto;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+}
+
+.tarjeta-auth .icono-auth {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--gris-100);
+    color: var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.75rem;
+    font-size: 1.25rem;
+}
+
+/* ---------- Encabezados de página ---------- */
+
+.encabezado-pagina h1 {
+    color: var(--color-texto);
+}
+
+.breadcrumb {
+    background: none;
+    padding-left: 0;
+}
+
+/* ---------- Estado vacío ---------- */
+
+.estado-vacio {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border: 1px dashed var(--gris-300);
+    border-radius: var(--radio-borde);
+    background-color: #ffffff;
+    color: var(--color-texto-suave);
+}

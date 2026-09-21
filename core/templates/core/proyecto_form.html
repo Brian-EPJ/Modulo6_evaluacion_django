@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block titulo %}Nuevo proyecto{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h4 mb-4">
+                    <i class="bi bi-folder-plus"></i> Nuevo proyecto
+                </h1>
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger py-2">
+                        <i class="bi bi-exclamation-triangle"></i> {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% for campo in form %}
+                        <div class="mb-3 {% if campo.errors %}campo-con-error{% endif %}">
+                            <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}</label>
+                            {{ campo }}
+                            {% if campo.help_text %}
+                                <div class="form-text">{{ campo.help_text }}</div>
+                            {% endif %}
+                            {% if campo.errors %}
+                                <div class="mensaje-error-campo">
+                                    <i class="bi bi-exclamation-circle"></i>
+                                    <span>{{ campo.errors.0 }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-principal">
+                            <i class="bi bi-check-lg"></i> Guardar
+                        </button>
+                        <a href="{% url 'proyecto_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
